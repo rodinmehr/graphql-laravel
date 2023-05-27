@@ -6,6 +6,7 @@ namespace App\GraphQL\Queries;
 
 use App\Models\Article;
 use Closure;
+use Rebing\GraphQL\Support\Facades\GraphQL;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Query;
@@ -20,6 +21,7 @@ class AllArticles extends Query
 
     public function type(): Type
     {
+        return Type::listOf(GraphQL::type('Article'));
         return Type::listOf(Type::string());
     }
 
@@ -37,6 +39,7 @@ class AllArticles extends Query
         $select = $fields->getSelect();
         $with = $fields->getRelations();
 
+        // $articles = Article::all();
         $articles = Article::all()->pluck('title');
         return $articles;
     }

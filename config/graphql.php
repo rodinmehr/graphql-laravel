@@ -77,7 +77,7 @@ return [
             'query' => [
                 // ExampleQuery::class,
                 'welcome' => \App\GraphQL\Queries\Index::class,
-                'allArticles' => \App\GraphQL\Queries\AllArticles::class
+                'allArticles' => \App\GraphQL\Queries\AllArticles::class,
             ],
             'mutation' => [
                 // ExampleMutation::class,
@@ -85,6 +85,7 @@ return [
             // The types only available in this schema
             'types' => [
                 // ExampleType::class,
+                'Article' => \App\GraphQL\Types\Article::class,
             ],
 
             // Laravel HTTP middleware
