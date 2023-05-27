@@ -76,8 +76,8 @@ return [
         'default' => [
             'query' => [
                 // ExampleQuery::class,
-                'welcome' => \App\GraphQL\Queries\Index::class,
                 'allArticles' => \App\GraphQL\Queries\AllArticles::class,
+                'allUsers' => \App\GraphQL\Queries\AllUsers::class,
             ],
             'mutation' => [
                 // ExampleMutation::class,
@@ -86,6 +86,7 @@ return [
             'types' => [
                 // ExampleType::class,
                 'Article' => \App\GraphQL\Types\Article::class,
+                'User' => \App\GraphQL\Types\User::class,
             ],
 
             // Laravel HTTP middleware

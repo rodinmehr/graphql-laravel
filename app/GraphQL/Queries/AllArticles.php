@@ -22,7 +22,7 @@ class AllArticles extends Query
     public function type(): Type
     {
         return Type::listOf(GraphQL::type('Article'));
-        return Type::listOf(Type::string());
+        // return Type::listOf(Type::string());
     }
 
     public function args(): array
@@ -39,8 +39,8 @@ class AllArticles extends Query
         $select = $fields->getSelect();
         $with = $fields->getRelations();
 
-        // $articles = Article::all();
-        $articles = Article::all()->pluck('title');
+        $articles = Article::all();
+        // $articles = Article::all()->pluck('title');
         return $articles;
     }
 }
