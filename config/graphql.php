@@ -78,6 +78,8 @@ return [
                 // ExampleQuery::class,
                 'allArticles' => \App\GraphQL\Queries\AllArticles::class,
                 'allUsers' => \App\GraphQL\Queries\AllUsers::class,
+                'user' => \App\GraphQL\Queries\SingleUser::class,
+                'article' => \App\GraphQL\Queries\SingleArticle::class,
             ],
             'mutation' => [
                 // ExampleMutation::class,
