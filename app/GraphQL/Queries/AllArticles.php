@@ -21,14 +21,19 @@ class AllArticles extends Query
 
     public function type(): Type
     {
-        return Type::listOf(GraphQL::type('Article'));
+        // return Type::listOf(GraphQL::type('Article'));
+        // return GraphQL::paginate('Article');
+        return GraphQL::type('ResultArticles');
         // return Type::listOf(Type::string());
     }
 
     public function args(): array
     {
         return [
-
+            'page' => [
+                'type' => Type::int()
+            ],
+            'limit' => Type::int()
         ];
     }
 
@@ -39,7 +44,9 @@ class AllArticles extends Query
         $select = $fields->getSelect();
         $with = $fields->getRelations();
 
-        $articles = Article::all();
+        $page = $args['page'] ?? 1;
+        $limit = $args['limit'] ?? 10;
+        $articles = Article::paginate($limit, ['*'], 'page', $page);
         // $articles = Article::all()->pluck('title');
         return $articles;
     }

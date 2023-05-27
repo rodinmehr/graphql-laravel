@@ -21,12 +21,20 @@ class AllUsers extends Query
 
     public function type(): Type
     {
-        return Type::listOf(GraphQL::type('User'));
+        // return Type::listOf(GraphQL::type('User'));
+        return GraphQL::paginate('User');
     }
 
     public function args(): array
     {
-        return [];
+        return [
+            'page' => [
+                'type' => Type::int()
+            ],
+            'limit' => [
+                'type' => Type::int()
+            ]
+        ];
     }
 
     public function resolve($root, array $args, $context, ResolveInfo $resolveInfo, Closure $getSelectFields)
@@ -35,7 +43,11 @@ class AllUsers extends Query
         $fields = $getSelectFields();
         $select = $fields->getSelect();
         $with = $fields->getRelations();
-        $users = User::all();
+
+        $page = $args['page'] ?? 1;
+        $limit = $args['limit'] ?? 10;
+        // $users = User::all();
+        $users = User::paginate($limit, ['*'], 'page', $page);
         return $users;
     }
 }

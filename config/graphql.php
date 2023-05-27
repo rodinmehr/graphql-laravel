@@ -89,6 +89,7 @@ return [
                 // ExampleType::class,
                 'Article' => \App\GraphQL\Types\Article::class,
                 'User' => \App\GraphQL\Types\User::class,
+                'ResultArticles' => \App\GraphQL\Types\ResultArticles::class,
             ],
 
             // Laravel HTTP middleware
