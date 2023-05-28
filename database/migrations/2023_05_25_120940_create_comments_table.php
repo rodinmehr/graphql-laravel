@@ -16,6 +16,7 @@ return new class extends Migration
             $table->integer('user_id')->unsigned();
             $table->integer('article_id')->unsigned();
             $table->text('body');
+            $table->boolean('approved')->default(0);
             $table->timestamps();
         });
     }

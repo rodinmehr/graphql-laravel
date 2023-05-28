@@ -24,6 +24,9 @@ class Comment extends GraphQLType
             'body' => [
                 'type' => Type::string()
             ],
+            'approved' => [
+                'type' => Type::boolean(),
+            ],
             'created_at' => [
                 'type' => Type::string()
             ],

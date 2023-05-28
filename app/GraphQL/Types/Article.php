@@ -31,7 +31,10 @@ class Article extends GraphQLType
                 'type' => GraphQL::type('User')
             ],
             'comments' => [
-                'type' => Type::listOf(GraphQL::type('Comment'))
+                'type' => Type::listOf(GraphQL::type('Comment')),
+                'resolve' => function ($data) {
+                    return $data->comments()->where('approved', true)->get();
+                }
             ]
         ];
     }

@@ -18,6 +18,7 @@ class CommentFactory extends Factory
     {
         return [
             'body' => fake()->paragraph(5),
+            'approved' => fake()->boolean(40)
         ];
     }
 }
