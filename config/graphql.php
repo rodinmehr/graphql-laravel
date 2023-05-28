@@ -90,6 +90,7 @@ return [
                 'Article' => \App\GraphQL\Types\Article::class,
                 'User' => \App\GraphQL\Types\User::class,
                 'ResultArticles' => \App\GraphQL\Types\ResultArticles::class,
+                'Comment' => \App\GraphQL\Types\Comment::class,
             ],
 
             // Laravel HTTP middleware

@@ -8,10 +8,10 @@ use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Facades\GraphQL;
 use Rebing\GraphQL\Support\Type as GraphQLType;
 
-class Article extends GraphQLType
+class Comment extends GraphQLType
 {
     protected $attributes = [
-        'name' => 'Article',
+        'name' => 'Comment',
         'description' => 'A type'
     ];
 
@@ -19,19 +19,22 @@ class Article extends GraphQLType
     {
         return [
             'id' => [
-                'type' => Type::int(),
-            ],
-            'title' => [
-                'type' => Type::string()
+                'type' => Type::int()
             ],
             'body' => [
+                'type' => Type::string()
+            ],
+            'created_at' => [
+                'type' => Type::string()
+            ],
+            'updated_at' => [
                 'type' => Type::string()
             ],
             'user' => [
                 'type' => GraphQL::type('User')
             ],
-            'comments' => [
-                'type' => Type::listOf(GraphQL::type('Comment'))
+            'article' => [
+                'type' => GraphQL::type('Article')
             ]
         ];
     }
