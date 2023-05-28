@@ -87,6 +87,7 @@ return [
                 'CreateArticle' => \App\GraphQL\Mutations\Article\CreateArticle::class,
                 'UpdateArticle' => \App\GraphQL\Mutations\Article\UpdateArticle::class,
                 'DeleteArticle' => \App\GraphQL\Mutations\Article\DeleteArticle::class,
+                'RegisterUser' => \App\GraphQL\Mutations\Auth\Register::class
             ],
             // The types only available in this schema
             'types' => [

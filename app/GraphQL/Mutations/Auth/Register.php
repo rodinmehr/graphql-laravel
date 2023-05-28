@@ -2,35 +2,36 @@
 
 declare(strict_types=1);
 
-namespace App\GraphQL\Mutations\Article;
+namespace App\GraphQL\Mutations\Auth;
 
-use App\Models\Article;
 use Closure;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
-use Rebing\GraphQL\Support\Facades\GraphQL;
 use Rebing\GraphQL\Support\Mutation;
 use Rebing\GraphQL\Support\SelectFields;
 
-class CreateArticle extends Mutation
+class Register extends Mutation
 {
     protected $attributes = [
-        'name' => 'article\CreateArticle',
+        'name' => 'auth\Register',
         'description' => 'A mutation'
     ];
 
     public function type(): Type
     {
-        return GraphQL::type('Article');
+        return Type::listOf(Type::string());
     }
 
     public function args(): array
     {
         return [
-            'title' => [
+            'name' => [
                 'type' => Type::string()
             ],
-            'body' => [
+            'email' => [
+                'type' => Type::string()
+            ],
+            'password' => [
                 'type' => Type::string()
             ]
         ];
@@ -39,8 +40,17 @@ class CreateArticle extends Mutation
     protected function rules(array $args = []): array
     {
         return [
-            'title' => ['required', 'string', 'min:5'],
-            'body' => ['required', 'string', 'min:5'],
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:6'],
+        ];
+    }
+
+    public function validationErrorMessages(array $args = []): array
+    {
+        return [
+            'email.requird' => 'Email is requied',
+            'email.email' => "Email doesn't have the correct format",
         ];
     }
 
@@ -50,11 +60,6 @@ class CreateArticle extends Mutation
         $select = $fields->getSelect();
         $with = $fields->getRelations();
 
-        $article = Article::create([
-            'user_id' => 2,
-            'title' => $args['title'],
-            'body' => $args['body']
-        ]);
-        return $article;
+        return [];
     }
 }
