@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 return [
     'route' => [
@@ -84,6 +84,9 @@ return [
             ],
             'mutation' => [
                 // ExampleMutation::class,
+                'CreateArticle' => \App\GraphQL\Mutations\Article\CreateArticle::class,
+                'UpdateArticle' => \App\GraphQL\Mutations\Article\UpdateArticle::class,
+                'DeleteArticle' => \App\GraphQL\Mutations\Article\DeleteArticle::class,
             ],
             // The types only available in this schema
             'types' => [
