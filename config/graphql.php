@@ -77,27 +77,18 @@ return [
             'query' => [
                 // ExampleQuery::class,
                 'allArticles' => \App\GraphQL\Queries\AllArticles::class,
-                'allUsers' => \App\GraphQL\Queries\AllUsers::class,
-                'user' => \App\GraphQL\Queries\SingleUser::class,
                 'article' => \App\GraphQL\Queries\SingleArticle::class,
                 'comment' => \App\GraphQL\Queries\SingleComment::class,
             ],
             'mutation' => [
                 // ExampleMutation::class,
-                'CreateArticle' => \App\GraphQL\Mutations\Article\CreateArticle::class,
-                'UpdateArticle' => \App\GraphQL\Mutations\Article\UpdateArticle::class,
-                'DeleteArticle' => \App\GraphQL\Mutations\Article\DeleteArticle::class,
                 'RegisterUser'  => \App\GraphQL\Mutations\Auth\Register::class,
                 'LoginUser'     => \App\GraphQL\Mutations\Auth\Login::class,
             ],
             // The types only available in this schema
             'types' => [
                 // ExampleType::class,
-                'Article' => \App\GraphQL\Types\Article::class,
-                'User' => \App\GraphQL\Types\User::class,
-                'ResultArticles' => \App\GraphQL\Types\ResultArticles::class,
-                'Comment' => \App\GraphQL\Types\Comment::class,
-                'Token' => \App\GraphQL\Types\Token::class,
+                
             ],
 
             // Laravel HTTP middleware
@@ -109,6 +100,18 @@ return [
             // An array of middlewares, overrides the global ones
             'execution_middleware' => null,
         ],
+        'user' => [
+            'query' => [
+                'allUsers' => \App\GraphQL\Queries\AllUsers::class,
+                'user' => \App\GraphQL\Queries\SingleUser::class,
+            ],
+            'mutation' => [
+                'CreateArticle' => \App\GraphQL\Mutations\Article\CreateArticle::class,
+                'UpdateArticle' => \App\GraphQL\Mutations\Article\UpdateArticle::class,
+                'DeleteArticle' => \App\GraphQL\Mutations\Article\DeleteArticle::class,
+            ],
+            'middleware' => ['auth:api'],
+        ]
     ],
 
     // The global types available to all schemas.
@@ -124,6 +127,11 @@ return [
         // ExampleType::class,
         // ExampleRelationType::class,
         // \Rebing\GraphQL\Support\UploadType::class,
+        'Article' => \App\GraphQL\Types\Article::class,
+        'User' => \App\GraphQL\Types\User::class,
+        'ResultArticles' => \App\GraphQL\Types\ResultArticles::class,
+        'Comment' => \App\GraphQL\Types\Comment::class,
+        'Token' => \App\GraphQL\Types\Token::class,
     ],
 
     // The types will be loaded on demand. Default is to load all types on each request

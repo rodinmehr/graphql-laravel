@@ -44,17 +44,27 @@ class CreateArticle extends Mutation
         ];
     }
 
+    public function authorize($root, array $args, $ctx, ResolveInfo $resolveInfo = null, Closure $getSelectFields = null): bool
+    {
+        $is_admin = auth()->user()->admin;
+        return $is_admin==0?false:true;
+    }
+
     public function resolve($root, array $args, $context, ResolveInfo $resolveInfo, Closure $getSelectFields)
     {
         $fields = $getSelectFields();
         $select = $fields->getSelect();
         $with = $fields->getRelations();
 
-        $article = Article::create([
-            'user_id' => 2,
+        $article = auth()->user()->articles()->create([
             'title' => $args['title'],
             'body' => $args['body']
         ]);
+        // $article = Article::create([
+        //     'user_id' => 2,
+        //     'title' => $args['title'],
+        //     'body' => $args['body']
+        // ]);
         return $article;
     }
 }
