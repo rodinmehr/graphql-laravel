@@ -87,7 +87,8 @@ return [
                 'CreateArticle' => \App\GraphQL\Mutations\Article\CreateArticle::class,
                 'UpdateArticle' => \App\GraphQL\Mutations\Article\UpdateArticle::class,
                 'DeleteArticle' => \App\GraphQL\Mutations\Article\DeleteArticle::class,
-                'RegisterUser' => \App\GraphQL\Mutations\Auth\Register::class
+                'RegisterUser'  => \App\GraphQL\Mutations\Auth\Register::class,
+                'LoginUser'     => \App\GraphQL\Mutations\Auth\Login::class,
             ],
             // The types only available in this schema
             'types' => [
@@ -96,6 +97,7 @@ return [
                 'User' => \App\GraphQL\Types\User::class,
                 'ResultArticles' => \App\GraphQL\Types\ResultArticles::class,
                 'Comment' => \App\GraphQL\Types\Comment::class,
+                'Token' => \App\GraphQL\Types\Token::class,
             ],
 
             // Laravel HTTP middleware
